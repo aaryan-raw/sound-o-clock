@@ -1,0 +1,6 @@
+---
+import { site, waGeneral } from "../data/site.js";
+const { title = "Ready to talk about your project?", text = "Send us a few details and we will reply with a quote. An enquiry is not a booking." } = Astro.props;
+---
+<aside class="cta wrap"><div><h2>{title}</h2><p class="muted">{text}</p></div>
+<div class="actions"><a class="btn primary" href="/contact/">Request a session</a><a class="btn" href={waGeneral} rel="noopener">WhatsApp</a><a class="btn" href={`tel:${site.tel}`}>Call</a></div></aside>

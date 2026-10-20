@@ -1,0 +1,19 @@
+---
+import { site, work, hasGallery, REVIEW } from "../data/site.js";
+const links = [["Services","/services/"],...(hasGallery||REVIEW?[["Studio","/#studio"]]:[]),...(work.length?[["Work","/#work"]]:[]),["Reviews","/#reviews"],["Engineer","/#about"],["Contact","/contact/"]];
+---
+<header class="hdr"><div class="wrap">
+  <a class="mark" href="/" aria-label={`${site.name} home`}>{site.name}</a>
+  <nav aria-label="Main">{links.map(([t,h])=><a href={h}>{t}</a>)}</nav>
+  <div class="right">
+    <details class="menu"><summary>Menu</summary><nav aria-label="Menu">{links.map(([t,h])=><a href={h}>{t}</a>)}</nav></details>
+    <a class="btn primary" href="/contact/">Enquire</a>
+  </div>
+</div></header>
+<script>
+  const m = document.querySelector<HTMLDetailsElement>("details.menu");
+  const close = () => m?.removeAttribute("open");
+  m?.querySelectorAll("a").forEach((a) => a.addEventListener("click", close));
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && m?.open) { close(); m.querySelector("summary")?.focus(); } });
+  document.addEventListener("click", (e) => { if (m?.open && e.target instanceof Node && !m.contains(e.target)) close(); });
+</script>

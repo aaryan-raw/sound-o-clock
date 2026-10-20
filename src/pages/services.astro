@@ -1,0 +1,16 @@
+---
+import Base from "../layouts/Base.astro";
+import EnquiryCTA from "../components/EnquiryCTA.astro";
+import { publicServices as services, REVIEW } from "../data/site.js";
+---
+<Base title="Recording studio services in Thiruvananthapuram | Sound O'Clock" description="Services at Sound O'Clock, a recording studio in Jagathy, Thiruvananthapuram: vocal recording, dubbing, mixing and mastering. Send an enquiry for a quote.">
+  <div class="wrap page"><div class="head"><h1>Services</h1>
+  <p class="muted">Choose the closest match and send an enquiry. We will reply to discuss your project and a quote.</p></div>
+  {services.map(s=>(<section class="sv" id={s.slug}>
+    <div><h2>{s.name}{REVIEW && !s.confirmed && <span class="tag">Provisional</span>}</h2><p>{s.text}</p><p class="muted">May suit: {s.suits}</p></div>
+    <div><h3>You can ask about</h3><ul>{s.ask.map(a=><li>{a}</li>)}</ul>
+    <p class="actions"><a class="btn primary" href={`/contact/?service=${encodeURIComponent(s.name)}`}>Get a quote for {s.name.toLowerCase()}</a></p>
+    <p class="note">Next step: send your project details. We reply to discuss a quote and availability. An enquiry is not a booking.</p></div>
+  </section>))}</div>
+  <EnquiryCTA />
+</Base>

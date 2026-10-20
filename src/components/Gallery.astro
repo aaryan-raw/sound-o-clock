@@ -1,0 +1,16 @@
+---
+import { Image } from "astro:assets";
+import { gallery } from "../data/site.js";
+const files = import.meta.glob<{ default: ImageMetadata }>("/src/assets/studio/*.{jpg,jpeg,png,webp}", { eager: true });
+const items = Object.entries(files).map(([p, m]) => { const n = p.split("/").pop() ?? ""; return { n, img: m.default, ...(gallery[n] || {}) }; }).filter(i => i.alt);
+---
+{items.length>0 && <>
+<div class="gal">{items.map((i,k)=>(<button type="button" data-lb={k} aria-label={`Enlarge photo: ${i.alt}`}>
+  <Image src={i.img} alt={i.alt} widths={[400,800]} sizes="(min-width:760px) 33vw, 100vw" loading={k<2?"eager":"lazy"} style={i.focus?`object-position:${i.focus}`:""} /></button>))}</div>
+<dialog class="lb" aria-label="Photo viewer"><img alt="" /><p class="note" data-cap></p><button class="btn" type="button" data-close>Close</button></dialog>
+<script define:vars={{full:items.map(i=>({src:i.img.src,alt:i.alt}))}}>
+  const dlg=document.querySelector("dialog.lb"),im=dlg.querySelector("img"),cap=dlg.querySelector("[data-cap]");
+  document.querySelectorAll("[data-lb]").forEach(b=>b.addEventListener("click",()=>{const f=full[b.dataset.lb];im.src=f.src;im.alt=f.alt;cap.textContent=f.alt;dlg.showModal();}));
+  dlg.querySelector("[data-close]").addEventListener("click",()=>dlg.close());
+  dlg.addEventListener("click",e=>{if(e.target===dlg)dlg.close();});
+</script></>}

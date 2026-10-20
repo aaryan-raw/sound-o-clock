@@ -1,0 +1,17 @@
+---
+import { site } from "../data/site.js";
+// Deterministic waveform: same bars every build, no JS.
+const bars = Array.from({length:72},(_,i)=>{const v=Math.abs(Math.sin(i*.37)*Math.cos(i*.11)+Math.sin(i*1.7)*.35);return {h:Math.max(8,Math.min(100,Math.round(v*80+10))),hot:i===46};});
+---
+<section class="hero">
+  <div class="wrap">
+    <h1>Your voice, recorded with care.</h1>
+    <p class="lead"><strong>Recording studio in Jagathy, Thiruvananthapuram.</strong> Vocal recording, dubbing, mixing and mastering with engineer {site.engineer}.</p>
+    <div class="actions">
+      <a class="btn primary" href="/contact/">Request a session</a>
+      <a class="btn" href={`tel:${site.tel}`}>Call {site.phone}</a>
+    </div>
+    <a class="rating" href="#reviews"><span aria-hidden="true">★</span> <b>{site.rating.score} out of 5</b> on Google from {site.rating.count} reviews</a>
+  </div>
+  <div class="wave" aria-hidden="true">{bars.map((b,i)=><i class={b.hot?"hot":""} style={`height:${b.h}%;--i:${i}`}></i>)}</div>
+</section>

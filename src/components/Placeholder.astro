@@ -1,0 +1,5 @@
+---
+import { REVIEW } from "../data/site.js";
+const { label, file } = Astro.props;
+---
+{REVIEW && <div class="ph" role="img" aria-label={`Placeholder: ${label}`}><p><b>Photo needed:</b> {label}<br />{file}</p></div>}

@@ -1,0 +1,14 @@
+---
+import { Image } from "astro:assets";
+import Placeholder from "./Placeholder.astro";
+import { site, REVIEW } from "../data/site.js";
+// Optional portrait: save as src/assets/engineer.jpg (or .png/.webp) with the owner's permission.
+const found = Object.values(import.meta.glob<{ default: ImageMetadata }>("/src/assets/engineer.{jpg,jpeg,png,webp}", { eager: true }))[0];
+---
+<section class="section" id="about"><div class={found||REVIEW?"wrap about":"wrap"}>
+  {found ? <Image src={found.default} alt={`Portrait of ${site.engineer}`} widths={[400,800]} sizes="(min-width:760px) 40vw, 100vw" loading="lazy" style="width:100%;max-width:26rem;aspect-ratio:4/5;object-fit:cover" />
+    : <Placeholder label={`Portrait of ${site.engineer}`} file="src/assets/engineer.jpg" />}
+  <div class="head"><h2>Meet the engineer</h2>
+  <p>{site.engineer} is the sound engineer named in customer reviews of {site.name}. Reviewers describe an experienced engineer and a comfortable working environment.</p>
+  {REVIEW && <p class="muted">Owner review: draft copy, replace with the engineer's own words.</p>}</div>
+</div></section>

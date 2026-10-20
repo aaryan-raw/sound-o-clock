@@ -1,0 +1,17 @@
+---
+import { site, waGeneral } from "../data/site.js";
+import EnquiryForm from "./EnquiryForm.astro";
+const { as: H = "h2" } = Astro.props;
+---
+<section class="section contact" id="enquire"><div class="wrap cgrid">
+  <div class="head"><H>Tell us about your project</H>
+  <p>Tell us what you are working on. Here is what happens next:</p>
+  <ol class="steps"><li>Send your project details by WhatsApp, phone or the form.</li><li>We reply to discuss your project, a quote and availability.</li><li>A session is only booked once we have confirmed it with you. An enquiry does not reserve a slot.</li></ol>
+  <div class="actions">
+    <a class="btn primary" href={`tel:${site.tel}`}>Call {site.phone}</a>
+    <a class="btn" href={waGeneral} rel="noopener">WhatsApp us</a>
+  </div>
+  <address>{site.address.map(l=><span>{l}<br /></span>)}</address>
+  <p><a class="more" href={site.mapsUrl} rel="noopener">Get directions on Google Maps</a></p></div>
+  <div><EnquiryForm /></div>
+</div></section>

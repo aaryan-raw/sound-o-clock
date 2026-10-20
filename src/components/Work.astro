@@ -1,0 +1,16 @@
+---
+import { Image } from "astro:assets";
+import { work } from "../data/site.js";
+const art = import.meta.glob<{ default: ImageMetadata }>("/src/assets/work/*.{jpg,jpeg,png,webp}", { eager: true });
+---
+{work.length>0 && <section class="section" id="work"><div class="wrap">
+  <div class="head"><h2>Listen to recent work</h2></div>
+  {work.map(w=>{ const a = w.artwork && art[`/src/assets/work/${w.artwork}`]; return (
+  <article class="wk">
+    {a && w.artworkAlt ? <Image src={a.default} alt={w.artworkAlt} widths={[280,560]} sizes="14rem" loading="lazy" /> : <div></div>}
+    <div><h3>{w.title}</h3><p class="muted">{[w.artist,w.kind].filter(Boolean).join(" · ")}</p>
+      {w.description && <p>{w.description}</p>}
+      {w.src && <audio controls preload="none" src={w.src}>Your browser does not support audio playback.</audio>}
+      {w.video && <iframe src={w.video} title={`Video: ${w.title}`} loading="lazy" allowfullscreen></iframe>}</div>
+  </article>);})}
+</div></section>}

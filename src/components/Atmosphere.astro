@@ -1,0 +1,14 @@
+---
+import Placeholder from "./Placeholder.astro";
+import Gallery from "./Gallery.astro";
+import { hasGallery as real, REVIEW } from "../data/site.js";
+---
+{(real || REVIEW) && <section class="section" id="studio"><div class="wrap">
+  <div class="head"><h2>A room built for focus and comfort</h2>
+  {!real && <p class="muted">Owner review: studio photographs go here.</p>}</div>
+  {real ? <Gallery /> : <div class="atm">
+    <div class="a"><Placeholder label="Wide shot of the control room" file="studio-control-room.jpg" /></div>
+    <div class="b"><Placeholder label="Vocal booth or recording area" file="studio-vocal-booth.jpg" /></div>
+    <div class="c"><Placeholder label="Close-up of equipment in use" file="studio-equipment.jpg" /></div>
+    <div class="d"><Placeholder label="Entrance or exterior" file="studio-entrance.jpg" /></div></div>}
+</div></section>}

@@ -1,0 +1,14 @@
+---
+import Base from "../layouts/Base.astro";
+import { site, REVIEW } from "../data/site.js";
+---
+<Base title="Privacy | Sound O'Clock" description="How the Sound O'Clock website handles your information.">
+  <div class="wrap page section"><div class="prose"><h1>Privacy</h1>
+  {REVIEW && <p class="muted">Owner review: draft text, not legal advice.</p>}
+  <h2>What this website collects</h2>
+  <p>This website does not use cookies, analytics or advertising trackers, and does not store the details you type into the enquiry form.</p>
+  <h2>Enquiries</h2>
+  <p>The enquiry form builds a message and opens WhatsApp. Your details are only shared if you press send there, and are then handled by WhatsApp and by {site.name} under their respective policies. You can also call us on <a href={`tel:${site.tel}`}>{site.phone}</a>.</p>
+  <h2>Hosting</h2><p>Like any website, our hosting provider may keep standard technical logs, such as IP addresses, for security and reliability.</p>
+  <h2>Maps</h2><p>Directions links open Google Maps, which has its own privacy policy.</p></div></div>
+</Base>

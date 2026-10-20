@@ -1,0 +1,5 @@
+---
+import { site, waGeneral } from "../data/site.js";
+const here = Astro.url.pathname === "/contact/";
+---
+<nav class="bar" aria-label="Quick contact"><a href={`tel:${site.tel}`}>Call</a><a href={waGeneral} rel="noopener">WhatsApp</a><a href={here?"#enquire":"/contact/"} aria-current={here?"page":undefined}>Enquire</a></nav>

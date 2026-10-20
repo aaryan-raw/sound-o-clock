@@ -1,0 +1,28 @@
+{
+  "name": "soundoclock",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "test": "node scripts/verify-dist.mjs",
+    "verify": "npm run check && npm run build && npm test"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.4",
+    "@fontsource-variable/dm-sans": "^5.3.0",
+    "@fontsource/instrument-serif": "^5.3.0",
+    "astro": "^7.4.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "typescript": "^6.0.3"
+  },
+  "engines": {
+    "node": ">=22.22.0"
+  },
+  "description": "Marketing website for Sound O'Clock recording studio"
+}

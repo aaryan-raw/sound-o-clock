@@ -1,0 +1,11 @@
+---
+import { publicServices as services, REVIEW } from "../data/site.js";
+---
+<section class="section" id="services"><div class="wrap">
+  <div class="head"><h2>Recording, mixing and finishing for your music and voice</h2>
+  <p class="muted">Not sure which you need? Describe your project and we will point you the right way.</p></div>
+  <ul class="svc">{services.map(s=>(
+    <li><h3><a href={`/services/#${s.slug}`}>{s.name}</a>{REVIEW && !s.confirmed && <span class="tag">Provisional</span>}</h3><p>{s.text}</p>
+    <a class="more" href="#enquire" data-service={s.name}>Ask about {s.name.toLowerCase()}</a></li>))}</ul>
+  <p class="actions"><a class="btn" href="/services/">Details for each service</a></p>
+</div></section>

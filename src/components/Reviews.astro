@@ -1,0 +1,10 @@
+---
+import { site, reviewThemes, testimonials } from "../data/site.js";
+---
+<section class="section" id="reviews"><div class="wrap">
+  <div class="head"><h2>What clients say</h2>
+  <p class="muted">Rated {site.rating.score} out of 5 on Google by {site.rating.count} clients. Reviewers mention:</p></div>
+  <div class="themes">{reviewThemes.map(t=><p>{t}</p>)}</div>
+  {testimonials.map(t=>(<blockquote><p>“{t.quote}”</p><footer class="note">{t.author}{t.url && <> · <a href={t.url} rel="noopener">Original review</a></>}</footer></blockquote>))}
+  <p class="actions"><a class="btn" href={site.mapsUrl} rel="noopener">Read all reviews on Google</a></p>
+</div></section>

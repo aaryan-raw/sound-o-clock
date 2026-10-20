@@ -1,0 +1,8 @@
+---
+import { site, waGeneral, hasGallery, REVIEW } from "../data/site.js";
+---
+<footer class="ftr"><div class="wrap">
+  <div><p class="mark">{site.name}</p><address>{site.address.map(l=><span>{l}<br /></span>)}<span>Plus Code {site.plusCode}</span></address></div>
+  <ul aria-label="Contact"><li><a href={`tel:${site.tel}`}>{site.phone}</a></li><li><a href={waGeneral} rel="noopener">WhatsApp</a></li><li><a href={site.mapsUrl} rel="noopener">Get directions</a></li></ul>
+  <ul aria-label="Pages"><li><a href="/services/">Services</a></li>{(hasGallery||REVIEW) && <li><a href="/#studio">Studio</a></li>}<li><a href="/#reviews">Reviews</a></li><li><a href="/contact/">Contact</a></li><li><a href="/privacy/">Privacy</a></li></ul>
+</div></footer>
